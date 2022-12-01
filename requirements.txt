@@ -1,2 +1,6 @@
-numpy=1.19.5
-opencv-python==4.1.2.30
+numpy
+opencv-python
+matplotlib
+scipy
+scikit-learn
+scikit-image
