@@ -38,13 +38,13 @@ def page_border(img):
         if len(approx) == 4:
             error = False
             display_cnt = approx.reshape(4, 2)
-
+            print(display_cnt)
             x1 = display_cnt[0][0] if (display_cnt[0][0] > display_cnt[1][0]) else display_cnt[1][0]
             y1 = display_cnt[0][1] if (display_cnt[0][1] > display_cnt[3][1]) else display_cnt[3][1]
 
             x2 = display_cnt[2][0] if (display_cnt[2][0] < display_cnt[3][0]) else display_cnt[3][0]
             y2 = display_cnt[1][1] if (display_cnt[1][1] < display_cnt[2][1]) else display_cnt[2][1]
-            img = img[y1: y2, x1: x2]
+            img = img[min(y1, y2): max(y1, y2), min(x1, x2): max(x1, x2)]
             break
 
     return error, img

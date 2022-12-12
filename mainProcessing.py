@@ -114,17 +114,17 @@ class ProcessedPage:
     def clean_page(self):
         """Cleans the image by bordering it and removing any page holes/lines."""
         # Border the image to page
-        error, bordered = pageBordering.page_border(self.img.copy())
-        if error:
-            raise Exception("The image provided could not be bordered.")
-        self.config['save_inter_func'](self.config, bordered, "bordered")
+        # error, bordered = pageBordering.page_border(self.img.copy())
+        # if error:
+        #     raise Exception("The image provided could not be bordered.")
+        # self.config['save_inter_func'](self.config, bordered, "bordered")
 
-        # Removes page holes
-        holes_removed = circleRemoval.page_hole_removal(bordered)
-        self.config['save_inter_func'](self.config, holes_removed, "holes_removed")
+        # # Removes page holes
+        # holes_removed = circleRemoval.page_hole_removal(bordered)
+        # self.config['save_inter_func'](self.config, holes_removed, "holes_removed")
 
         # Remove lines on lined paper (repeating for multiple iterations gives better results)
-        lines_removed = holes_removed
+        lines_removed = self.img.copy()
         for i in range(3):
             lines_removed, gray = lineRemoval.lines_removal(lines_removed)
         self.config['save_inter_func'](self.config, lines_removed, "lines_removed")
